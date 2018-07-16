@@ -1,6 +1,7 @@
 package cn.provider.mapper;
 
 import cn.provider.entity.user;
+import cn.provider.model.UserModel;
 
 public interface userMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface userMapper {
     int updateByPrimaryKeySelective(user record);
 
     int updateByPrimaryKey(user record);
+
+    user selectUserInfo(UserModel model);
 }

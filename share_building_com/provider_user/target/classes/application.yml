@@ -40,6 +40,10 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    http:
+       multipart:
+         max-file-size: 100Mb
+         max-request-size: 100Mb
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
 #  type-aliases-package: cn.provider.entity

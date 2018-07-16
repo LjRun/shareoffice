@@ -9,7 +9,7 @@ public class user {
 
     private Integer departmentid;
 
-    private String roleid;
+    private Integer roleid;
 
     private String username;
 
@@ -73,12 +73,12 @@ public class user {
         this.departmentid = departmentid;
     }
 
-    public String getRoleid() {
+    public Integer getRoleid() {
         return roleid;
     }
 
-    public void setRoleid(String roleid) {
-        this.roleid = roleid == null ? null : roleid.trim();
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid ;
     }
 
     public String getUsername() {
