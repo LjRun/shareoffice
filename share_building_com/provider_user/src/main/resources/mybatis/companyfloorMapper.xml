@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.companyfloorMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.companyfloor" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CompanyId" property="companyid" jdbcType="INTEGER" />
+    <result column="FloorId" property="floorid" jdbcType="INTEGER" />
+    <result column="BindTime" property="bindtime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CompanyId, FloorId, BindTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from companyfloor
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from companyfloor
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.companyfloor" >
+    insert into companyfloor (Id, CompanyId, FloorId, 
+      BindTime, Remark)
+    values (#{id,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, #{floorid,jdbcType=INTEGER}, 
+      #{bindtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.companyfloor" >
+    insert into companyfloor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="companyid != null" >
+        CompanyId,
+      </if>
+      <if test="floorid != null" >
+        FloorId,
+      </if>
+      <if test="bindtime != null" >
+        BindTime,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="floorid != null" >
+        #{floorid,jdbcType=INTEGER},
+      </if>
+      <if test="bindtime != null" >
+        #{bindtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.companyfloor" >
+    update companyfloor
+    <set >
+      <if test="companyid != null" >
+        CompanyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="floorid != null" >
+        FloorId = #{floorid,jdbcType=INTEGER},
+      </if>
+      <if test="bindtime != null" >
+        BindTime = #{bindtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.companyfloor" >
+    update companyfloor
+    set CompanyId = #{companyid,jdbcType=INTEGER},
+      FloorId = #{floorid,jdbcType=INTEGER},
+      BindTime = #{bindtime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

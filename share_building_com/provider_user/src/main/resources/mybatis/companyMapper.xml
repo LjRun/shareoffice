@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.companyMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.company" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="GardenId" property="gardenid" jdbcType="INTEGER" />
+    <result column="Encoding" property="encoding" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="CompanyType" property="companytype" jdbcType="INTEGER" />
+    <result column="ContactMan" property="contactman" jdbcType="VARCHAR" />
+    <result column="ContactPhone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="LegalPerson" property="legalperson" jdbcType="VARCHAR" />
+    <result column="Scale" property="scale" jdbcType="INTEGER" />
+    <result column="ContactAddress" property="contactaddress" jdbcType="VARCHAR" />
+    <result column="CompanyLicenseNumber" property="companylicensenumber" jdbcType="VARCHAR" />
+    <result column="RegisteredAssets" property="registeredassets" jdbcType="DECIMAL" />
+    <result column="StartRentTime" property="startrenttime" jdbcType="TIMESTAMP" />
+    <result column="EndRentTime" property="endrenttime" jdbcType="TIMESTAMP" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="CompanyIntroduction" property="companyintroduction" jdbcType="VARCHAR" />
+    <result column="OperationsTime" property="operationstime" jdbcType="TIMESTAMP" />
+    <result column="AddTime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, GardenId, Encoding, Name, CompanyType, ContactMan, ContactPhone, LegalPerson, 
+    Scale, ContactAddress, CompanyLicenseNumber, RegisteredAssets, StartRentTime, EndRentTime, 
+    State, CompanyIntroduction, OperationsTime, AddTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.company" >
+    insert into company (Id, GardenId, Encoding, 
+      Name, CompanyType, ContactMan, 
+      ContactPhone, LegalPerson, Scale, 
+      ContactAddress, CompanyLicenseNumber, RegisteredAssets, 
+      StartRentTime, EndRentTime, State, 
+      CompanyIntroduction, OperationsTime, 
+      AddTime, Remark)
+    values (#{id,jdbcType=INTEGER}, #{gardenid,jdbcType=INTEGER}, #{encoding,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{companytype,jdbcType=INTEGER}, #{contactman,jdbcType=VARCHAR}, 
+      #{contactphone,jdbcType=VARCHAR}, #{legalperson,jdbcType=VARCHAR}, #{scale,jdbcType=INTEGER}, 
+      #{contactaddress,jdbcType=VARCHAR}, #{companylicensenumber,jdbcType=VARCHAR}, #{registeredassets,jdbcType=DECIMAL}, 
+      #{startrenttime,jdbcType=TIMESTAMP}, #{endrenttime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
+      #{companyintroduction,jdbcType=VARCHAR}, #{operationstime,jdbcType=TIMESTAMP}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="gardenid != null" >
+        GardenId,
+      </if>
+      <if test="encoding != null" >
+        Encoding,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="companytype != null" >
+        CompanyType,
+      </if>
+      <if test="contactman != null" >
+        ContactMan,
+      </if>
+      <if test="contactphone != null" >
+        ContactPhone,
+      </if>
+      <if test="legalperson != null" >
+        LegalPerson,
+      </if>
+      <if test="scale != null" >
+        Scale,
+      </if>
+      <if test="contactaddress != null" >
+        ContactAddress,
+      </if>
+      <if test="companylicensenumber != null" >
+        CompanyLicenseNumber,
+      </if>
+      <if test="registeredassets != null" >
+        RegisteredAssets,
+      </if>
+      <if test="startrenttime != null" >
+        StartRentTime,
+      </if>
+      <if test="endrenttime != null" >
+        EndRentTime,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="companyintroduction != null" >
+        CompanyIntroduction,
+      </if>
+      <if test="operationstime != null" >
+        OperationsTime,
+      </if>
+      <if test="addtime != null" >
+        AddTime,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gardenid != null" >
+        #{gardenid,jdbcType=INTEGER},
+      </if>
+      <if test="encoding != null" >
+        #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companytype != null" >
+        #{companytype,jdbcType=INTEGER},
+      </if>
+      <if test="contactman != null" >
+        #{contactman,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalperson != null" >
+        #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="contactaddress != null" >
+        #{contactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companylicensenumber != null" >
+        #{companylicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredassets != null" >
+        #{registeredassets,jdbcType=DECIMAL},
+      </if>
+      <if test="startrenttime != null" >
+        #{startrenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endrenttime != null" >
+        #{endrenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="companyintroduction != null" >
+        #{companyintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="operationstime != null" >
+        #{operationstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.company" >
+    update company
+    <set >
+      <if test="gardenid != null" >
+        GardenId = #{gardenid,jdbcType=INTEGER},
+      </if>
+      <if test="encoding != null" >
+        Encoding = #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companytype != null" >
+        CompanyType = #{companytype,jdbcType=INTEGER},
+      </if>
+      <if test="contactman != null" >
+        ContactMan = #{contactman,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        ContactPhone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalperson != null" >
+        LegalPerson = #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null" >
+        Scale = #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="contactaddress != null" >
+        ContactAddress = #{contactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companylicensenumber != null" >
+        CompanyLicenseNumber = #{companylicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredassets != null" >
+        RegisteredAssets = #{registeredassets,jdbcType=DECIMAL},
+      </if>
+      <if test="startrenttime != null" >
+        StartRentTime = #{startrenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endrenttime != null" >
+        EndRentTime = #{endrenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="companyintroduction != null" >
+        CompanyIntroduction = #{companyintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="operationstime != null" >
+        OperationsTime = #{operationstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        AddTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.company" >
+    update company
+    set GardenId = #{gardenid,jdbcType=INTEGER},
+      Encoding = #{encoding,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      CompanyType = #{companytype,jdbcType=INTEGER},
+      ContactMan = #{contactman,jdbcType=VARCHAR},
+      ContactPhone = #{contactphone,jdbcType=VARCHAR},
+      LegalPerson = #{legalperson,jdbcType=VARCHAR},
+      Scale = #{scale,jdbcType=INTEGER},
+      ContactAddress = #{contactaddress,jdbcType=VARCHAR},
+      CompanyLicenseNumber = #{companylicensenumber,jdbcType=VARCHAR},
+      RegisteredAssets = #{registeredassets,jdbcType=DECIMAL},
+      StartRentTime = #{startrenttime,jdbcType=TIMESTAMP},
+      EndRentTime = #{endrenttime,jdbcType=TIMESTAMP},
+      State = #{state,jdbcType=INTEGER},
+      CompanyIntroduction = #{companyintroduction,jdbcType=VARCHAR},
+      OperationsTime = #{operationstime,jdbcType=TIMESTAMP},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

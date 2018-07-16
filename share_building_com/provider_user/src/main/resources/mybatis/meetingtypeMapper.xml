@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.meetingtypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.meetingtype" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="RoleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="RoleEncoding" property="roleencoding" jdbcType="VARCHAR" />
+    <result column="IsEnabled" property="isenabled" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="INTEGER" />
+    <result column="role_encoding" property="roleEncoding" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, RoleName, RoleEncoding, IsEnabled, is_enabled, role_encoding, role_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from role
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.meetingtype" >
+    insert into role (Id, RoleName, RoleEncoding, 
+      IsEnabled, is_enabled, role_encoding, 
+      role_name)
+    values (#{id,jdbcType=BIGINT}, #{rolename,jdbcType=VARCHAR}, #{roleencoding,jdbcType=VARCHAR}, 
+      #{isenabled,jdbcType=INTEGER}, #{isEnabled,jdbcType=INTEGER}, #{roleEncoding,jdbcType=VARCHAR}, 
+      #{roleName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.meetingtype" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="rolename != null" >
+        RoleName,
+      </if>
+      <if test="roleencoding != null" >
+        RoleEncoding,
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="roleEncoding != null" >
+        role_encoding,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleencoding != null" >
+        #{roleencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null" >
+        #{isenabled,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="roleEncoding != null" >
+        #{roleEncoding,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.meetingtype" >
+    update role
+    <set >
+      <if test="rolename != null" >
+        RoleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleencoding != null" >
+        RoleEncoding = #{roleencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled = #{isenabled,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="roleEncoding != null" >
+        role_encoding = #{roleEncoding,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.meetingtype" >
+    update role
+    set RoleName = #{rolename,jdbcType=VARCHAR},
+      RoleEncoding = #{roleencoding,jdbcType=VARCHAR},
+      IsEnabled = #{isenabled,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER},
+      role_encoding = #{roleEncoding,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

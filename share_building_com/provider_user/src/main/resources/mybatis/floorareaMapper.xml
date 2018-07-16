@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.floorareaMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.floorarea" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="FloorId" property="floorid" jdbcType="INTEGER" />
+    <result column="Encoding" property="encoding" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Des" property="des" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, FloorId, Encoding, Name, Des, State, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from floorarea
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from floorarea
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.floorarea" >
+    insert into floorarea (Id, FloorId, Encoding, 
+      Name, Des, State, Remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{floorid,jdbcType=INTEGER}, #{encoding,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.floorarea" >
+    insert into floorarea
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="floorid != null" >
+        FloorId,
+      </if>
+      <if test="encoding != null" >
+        Encoding,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="des != null" >
+        Des,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="floorid != null" >
+        #{floorid,jdbcType=INTEGER},
+      </if>
+      <if test="encoding != null" >
+        #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.floorarea" >
+    update floorarea
+    <set >
+      <if test="floorid != null" >
+        FloorId = #{floorid,jdbcType=INTEGER},
+      </if>
+      <if test="encoding != null" >
+        Encoding = #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        Des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.floorarea" >
+    update floorarea
+    set FloorId = #{floorid,jdbcType=INTEGER},
+      Encoding = #{encoding,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Des = #{des,jdbcType=VARCHAR},
+      State = #{state,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.userMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.user" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CompanyId" property="companyid" jdbcType="INTEGER" />
+    <result column="DepartmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="RoleId" property="roleid" jdbcType="VARCHAR" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="LoginAccount" property="loginaccount" jdbcType="VARCHAR" />
+    <result column="LoginKey" property="loginkey" jdbcType="VARCHAR" />
+    <result column="LoginPassword" property="loginpassword" jdbcType="VARCHAR" />
+    <result column="Token" property="token" jdbcType="VARCHAR" />
+    <result column="JobNumber" property="jobnumber" jdbcType="VARCHAR" />
+    <result column="OpenId" property="openid" jdbcType="VARCHAR" />
+    <result column="UnionId" property="unionid" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="PushRegistrationID" property="pushregistrationid" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="Birth" property="birth" jdbcType="TIMESTAMP" />
+    <result column="Avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="ActivatedState" property="activatedstate" jdbcType="INTEGER" />
+    <result column="DisabledState" property="disabledstate" jdbcType="INTEGER" />
+    <result column="WorkingState" property="workingstate" jdbcType="INTEGER" />
+    <result column="RegisterTime" property="registertime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CompanyId, DepartmentId, RoleId, UserName, LoginAccount, LoginKey, LoginPassword, 
+    Token, JobNumber, OpenId, UnionId, Mobile, PushRegistrationID, Sex, Birth, Avatar, 
+    ActivatedState, DisabledState, WorkingState, RegisterTime, UpdateTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.user" >
+    insert into user (Id, CompanyId, DepartmentId, 
+      RoleId, UserName, LoginAccount, 
+      LoginKey, LoginPassword, Token, 
+      JobNumber, OpenId, UnionId, 
+      Mobile, PushRegistrationID, Sex, 
+      Birth, Avatar, ActivatedState, 
+      DisabledState, WorkingState, RegisterTime, 
+      UpdateTime, Remark)
+    values (#{id,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
+      #{roleid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{loginaccount,jdbcType=VARCHAR}, 
+      #{loginkey,jdbcType=VARCHAR}, #{loginpassword,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{jobnumber,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{pushregistrationid,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{birth,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, #{activatedstate,jdbcType=INTEGER}, 
+      #{disabledstate,jdbcType=INTEGER}, #{workingstate,jdbcType=INTEGER}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.user" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="companyid != null" >
+        CompanyId,
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="loginaccount != null" >
+        LoginAccount,
+      </if>
+      <if test="loginkey != null" >
+        LoginKey,
+      </if>
+      <if test="loginpassword != null" >
+        LoginPassword,
+      </if>
+      <if test="token != null" >
+        Token,
+      </if>
+      <if test="jobnumber != null" >
+        JobNumber,
+      </if>
+      <if test="openid != null" >
+        OpenId,
+      </if>
+      <if test="unionid != null" >
+        UnionId,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="pushregistrationid != null" >
+        PushRegistrationID,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="birth != null" >
+        Birth,
+      </if>
+      <if test="avatar != null" >
+        Avatar,
+      </if>
+      <if test="activatedstate != null" >
+        ActivatedState,
+      </if>
+      <if test="disabledstate != null" >
+        DisabledState,
+      </if>
+      <if test="workingstate != null" >
+        WorkingState,
+      </if>
+      <if test="registertime != null" >
+        RegisterTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginaccount != null" >
+        #{loginaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginkey != null" >
+        #{loginkey,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpassword != null" >
+        #{loginpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnumber != null" >
+        #{jobnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pushregistrationid != null" >
+        #{pushregistrationid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="activatedstate != null" >
+        #{activatedstate,jdbcType=INTEGER},
+      </if>
+      <if test="disabledstate != null" >
+        #{disabledstate,jdbcType=INTEGER},
+      </if>
+      <if test="workingstate != null" >
+        #{workingstate,jdbcType=INTEGER},
+      </if>
+      <if test="registertime != null" >
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.user" >
+    update user
+    <set >
+      <if test="companyid != null" >
+        CompanyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginaccount != null" >
+        LoginAccount = #{loginaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginkey != null" >
+        LoginKey = #{loginkey,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpassword != null" >
+        LoginPassword = #{loginpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        Token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnumber != null" >
+        JobNumber = #{jobnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        OpenId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        UnionId = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pushregistrationid != null" >
+        PushRegistrationID = #{pushregistrationid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null" >
+        Birth = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null" >
+        Avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="activatedstate != null" >
+        ActivatedState = #{activatedstate,jdbcType=INTEGER},
+      </if>
+      <if test="disabledstate != null" >
+        DisabledState = #{disabledstate,jdbcType=INTEGER},
+      </if>
+      <if test="workingstate != null" >
+        WorkingState = #{workingstate,jdbcType=INTEGER},
+      </if>
+      <if test="registertime != null" >
+        RegisterTime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.user" >
+    update user
+    set CompanyId = #{companyid,jdbcType=INTEGER},
+      DepartmentId = #{departmentid,jdbcType=INTEGER},
+      RoleId = #{roleid,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      LoginAccount = #{loginaccount,jdbcType=VARCHAR},
+      LoginKey = #{loginkey,jdbcType=VARCHAR},
+      LoginPassword = #{loginpassword,jdbcType=VARCHAR},
+      Token = #{token,jdbcType=VARCHAR},
+      JobNumber = #{jobnumber,jdbcType=VARCHAR},
+      OpenId = #{openid,jdbcType=VARCHAR},
+      UnionId = #{unionid,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      PushRegistrationID = #{pushregistrationid,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=INTEGER},
+      Birth = #{birth,jdbcType=TIMESTAMP},
+      Avatar = #{avatar,jdbcType=VARCHAR},
+      ActivatedState = #{activatedstate,jdbcType=INTEGER},
+      DisabledState = #{disabledstate,jdbcType=INTEGER},
+      WorkingState = #{workingstate,jdbcType=INTEGER},
+      RegisterTime = #{registertime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
