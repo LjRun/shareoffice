@@ -12,6 +12,7 @@
         <module>eureka_server</module>
         <module>zuul_server</module>
         <module>provider_user</module>
+        <module>provide_message</module>
     </modules>
 
     <properties>

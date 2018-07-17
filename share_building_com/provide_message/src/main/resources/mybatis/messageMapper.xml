@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.messageMapper">
+    <resultMap id="BaseResultMap" type="cn.provider.entity.message">
+        <id column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="UserId" property="userid" jdbcType="INTEGER"/>
+        <result column="MsgType" property="msgtype" jdbcType="VARCHAR"/>
+        <result column="originalId" property="originalid" jdbcType="INTEGER"/>
+        <result column="MsgTitle" property="msgtitle" jdbcType="VARCHAR"/>
+        <result column="MsgContent" property="msgcontent" jdbcType="VARCHAR"/>
+        <result column="SendTime" property="sendtime" jdbcType="TIMESTAMP"/>
+        <result column="SendUserId" property="senduserid" jdbcType="INTEGER"/>
+        <result column="IsRead" property="isread" jdbcType="INTEGER"/>
+        <result column="Remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    Id, UserId, MsgType, originalId, MsgTitle, MsgContent, SendTime, SendUserId, IsRead, 
+    Remark
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <select id="selectMessage" resultType="cn.provider.model.response.MessageModel" parameterType="cn.provider.model.request.MessageRequest">
+        SELECT
+        message.*,user.username
+        FROM shareoffice.message
+        join shareoffice.user
+        where 1=1
+        <if test="snedUserId!=null and snedUserId!=0">
+            and SendUserId=${snedUserId}
+        </if>
+        <if test="messageType!=null">
+            and MsgType=#{messageType}
+        </if>
+        limit ${(page-1)*size},${size}
+    </select>
+
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.provider.entity.message">
+    insert into message (Id, UserId, MsgType, 
+      originalId, MsgTitle, MsgContent, 
+      SendTime, SendUserId, IsRead, 
+      Remark)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{msgtype,jdbcType=VARCHAR}, 
+      #{originalid,jdbcType=INTEGER}, #{msgtitle,jdbcType=VARCHAR}, #{msgcontent,jdbcType=VARCHAR}, 
+      #{sendtime,jdbcType=TIMESTAMP}, #{senduserid,jdbcType=INTEGER}, #{isread,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.provider.entity.message">
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="userid != null">
+                UserId,
+            </if>
+            <if test="msgtype != null">
+                MsgType,
+            </if>
+            <if test="originalid != null">
+                originalId,
+            </if>
+            <if test="msgtitle != null">
+                MsgTitle,
+            </if>
+            <if test="msgcontent != null">
+                MsgContent,
+            </if>
+            <if test="sendtime != null">
+                SendTime,
+            </if>
+            <if test="senduserid != null">
+                SendUserId,
+            </if>
+            <if test="isread != null">
+                IsRead,
+            </if>
+            <if test="remark != null">
+                Remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="msgtype != null">
+                #{msgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="originalid != null">
+                #{originalid,jdbcType=INTEGER},
+            </if>
+            <if test="msgtitle != null">
+                #{msgtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="msgcontent != null">
+                #{msgcontent,jdbcType=VARCHAR},
+            </if>
+            <if test="sendtime != null">
+                #{sendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="senduserid != null">
+                #{senduserid,jdbcType=INTEGER},
+            </if>
+            <if test="isread != null">
+                #{isread,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.message">
+        update message
+        <set>
+            <if test="userid != null">
+                UserId = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="msgtype != null">
+                MsgType = #{msgtype,jdbcType=VARCHAR},
+            </if>
+            <if test="originalid != null">
+                originalId = #{originalid,jdbcType=INTEGER},
+            </if>
+            <if test="msgtitle != null">
+                MsgTitle = #{msgtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="msgcontent != null">
+                MsgContent = #{msgcontent,jdbcType=VARCHAR},
+            </if>
+            <if test="sendtime != null">
+                SendTime = #{sendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="senduserid != null">
+                SendUserId = #{senduserid,jdbcType=INTEGER},
+            </if>
+            <if test="isread != null">
+                IsRead = #{isread,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                Remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.provider.entity.message">
+    update message
+    set UserId = #{userid,jdbcType=INTEGER},
+      MsgType = #{msgtype,jdbcType=VARCHAR},
+      originalId = #{originalid,jdbcType=INTEGER},
+      MsgTitle = #{msgtitle,jdbcType=VARCHAR},
+      MsgContent = #{msgcontent,jdbcType=VARCHAR},
+      SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      SendUserId = #{senduserid,jdbcType=INTEGER},
+      IsRead = #{isread,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
