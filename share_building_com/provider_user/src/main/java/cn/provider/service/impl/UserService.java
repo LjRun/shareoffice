@@ -10,14 +10,25 @@ import cn.provider.model.response.UserInfoReponse;
 import cn.provider.model.response.UserUpdatePwdRequest;
 import cn.provider.service.IUserService;
 import cn.provider.util.StringUtil;
+import cn.provider.util.redis.RedisKey;
+import cn.provider.util.redis.impl.RedisService;
+import com.sun.tools.classfile.StackMapTable_attribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Priority;
+import javax.annotation.Resource;
+import java.text.MessageFormat;
 
 @Service
 public class UserService implements IUserService {
 
     @Autowired(required = false)
     private userMapper _userMapper;
+
+
+    @Resource
+    private RedisService redisService;
 
     @Override
     public user getUser(UserModel model) {
@@ -26,8 +37,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean setUser(user us) {
-        return _userMapper.updateByPrimaryKeySelective(us) > 0;
+    public boolean setUser(Integer uid,String token){
+        try {
+            String key= MessageFormat.format(RedisKey.userTolen,uid);
+            redisService.set(key,token);
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     @Override

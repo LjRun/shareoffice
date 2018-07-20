@@ -10,7 +10,7 @@ import cn.provider.model.response.UserUpdatePwdRequest;
 public interface IUserService {
     user getUser(UserModel model);
 
-    boolean setUser(user us);
+    boolean setUser(Integer uid,String token);
 
     CommonModel<UserInfoReponse> getUser(Integer uid);
 

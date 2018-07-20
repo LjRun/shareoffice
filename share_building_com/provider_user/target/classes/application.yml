@@ -16,8 +16,6 @@
 #  instance:
 #    hostname: 192.168.19.198
 #    instance-id: http://192.168.19.198:8081
-server:
-  port: 8090
 spring:
     datasource:
         name: shareoffice
@@ -44,6 +42,17 @@ spring:
        multipart:
          max-file-size: 100Mb
          max-request-size: 100Mb
+    application:
+      name: provider_user
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
 #  type-aliases-package: cn.provider.entity
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.198:8756/eureka/  #注册中心地址
+  instance:
+    hostname: 192.168.19.198
+    instance-id: http://192.168.19.198:8081
+server:
+  port: 8081

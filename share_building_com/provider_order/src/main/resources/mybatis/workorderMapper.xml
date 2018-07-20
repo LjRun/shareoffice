@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.workorderMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.workorder" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="AddClientUserId" property="addclientuserid" jdbcType="INTEGER" />
+    <result column="DispatchUserId" property="dispatchuserid" jdbcType="INTEGER" />
+    <result column="DepartmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="RecipientUserId" property="recipientuserid" jdbcType="INTEGER" />
+    <result column="WorkOrderTypeEncoding" property="workordertypeencoding" jdbcType="VARCHAR" />
+    <result column="Code" property="code" jdbcType="VARCHAR" />
+    <result column="Details" property="details" jdbcType="VARCHAR" />
+    <result column="ApplyTime" property="applytime" jdbcType="TIMESTAMP" />
+    <result column="ServeCompany" property="servecompany" jdbcType="VARCHAR" />
+    <result column="ContactMan" property="contactman" jdbcType="VARCHAR" />
+    <result column="ContactPhone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="WorkOrderState" property="workorderstate" jdbcType="INTEGER" />
+    <result column="IsAutoSendOrder" property="isautosendorder" jdbcType="INTEGER" />
+    <result column="IsHangUp" property="ishangup" jdbcType="INTEGER" />
+    <result column="StateTime" property="statetime" jdbcType="TIMESTAMP" />
+    <result column="StateRemark" property="stateremark" jdbcType="VARCHAR" />
+    <result column="CustomerFeedbackStar" property="customerfeedbackstar" jdbcType="INTEGER" />
+    <result column="CustomerAppraisal" property="customerappraisal" jdbcType="VARCHAR" />
+    <result column="CustomerSignature" property="customersignature" jdbcType="VARCHAR" />
+    <result column="LaborCosts" property="laborcosts" jdbcType="DECIMAL" />
+    <result column="MaterialFee" property="materialfee" jdbcType="DECIMAL" />
+    <result column="DealResult" property="dealresult" jdbcType="VARCHAR" />
+    <result column="AllCost" property="allcost" jdbcType="DECIMAL" />
+    <result column="TotalTimeConsuming" property="totaltimeconsuming" jdbcType="REAL" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, AddClientUserId, DispatchUserId, DepartmentId, RecipientUserId,
+    WorkOrderTypeEncoding, Code, Details, ApplyTime, ServeCompany, ContactMan, ContactPhone, 
+    Address, WorkOrderState, IsAutoSendOrder, IsHangUp, StateTime, StateRemark, CustomerFeedbackStar, 
+    CustomerAppraisal, CustomerSignature, LaborCosts, MaterialFee, DealResult, AllCost, 
+    TotalTimeConsuming, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from workorder
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from workorder-->
+    <!--where Id = #{id,jdbcType=INTEGER}-->
+  <!--</select>-->
+
+  <select id="selectOrder" resultType="cn.provider.model.reponse.OrderModel">
+    select
+    <include refid="Base_Column_List" />
+    from workorder
+    where 1=1
+    <if test="contactMan!=null">
+      and ContactMan=#{contactMan}
+    </if>
+    <if test="orderNo!=null">
+      and Code=#{orderNo}
+    </if>
+  </select>
+
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workorder
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.workorder" >
+    insert into workorder (Id, AddClientUserId, DispatchUserId, 
+      DepartmentId, RecipientUserId,
+      WorkOrderTypeEncoding, Code, Details, 
+      ApplyTime, ServeCompany, ContactMan, 
+      ContactPhone, Address, WorkOrderState, 
+      IsAutoSendOrder, IsHangUp, StateTime, 
+      StateRemark, CustomerFeedbackStar, CustomerAppraisal, 
+      CustomerSignature, LaborCosts, MaterialFee, 
+      DealResult, AllCost, TotalTimeConsuming, 
+      Remark)
+    values (#{id,jdbcType=INTEGER}, #{addclientuserid,jdbcType=INTEGER}, #{dispatchuserid,jdbcType=INTEGER}, 
+      #{departmentid,jdbcType=INTEGER}, #{recipientuserid,jdbcType=INTEGER},
+      #{workordertypeencoding,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}, 
+      #{applytime,jdbcType=TIMESTAMP}, #{servecompany,jdbcType=VARCHAR}, #{contactman,jdbcType=VARCHAR}, 
+      #{contactphone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{workorderstate,jdbcType=INTEGER}, 
+      #{isautosendorder,jdbcType=INTEGER}, #{ishangup,jdbcType=INTEGER}, #{statetime,jdbcType=TIMESTAMP}, 
+      #{stateremark,jdbcType=VARCHAR}, #{customerfeedbackstar,jdbcType=INTEGER}, #{customerappraisal,jdbcType=VARCHAR}, 
+      #{customersignature,jdbcType=VARCHAR}, #{laborcosts,jdbcType=DECIMAL}, #{materialfee,jdbcType=DECIMAL}, 
+      #{dealresult,jdbcType=VARCHAR}, #{allcost,jdbcType=DECIMAL}, #{totaltimeconsuming,jdbcType=REAL}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.workorder" >
+    insert into workorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="addclientuserid != null" >
+        AddClientUserId,
+      </if>
+      <if test="dispatchuserid != null" >
+        DispatchUserId,
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId,
+      </if>
+      <if test="recipientuserid != null" >
+        RecipientUserId,
+      </if>
+      <if test="workordertypeencoding != null" >
+        WorkOrderTypeEncoding,
+      </if>
+      <if test="code != null" >
+        Code,
+      </if>
+      <if test="details != null" >
+        Details,
+      </if>
+      <if test="applytime != null" >
+        ApplyTime,
+      </if>
+      <if test="servecompany != null" >
+        ServeCompany,
+      </if>
+      <if test="contactman != null" >
+        ContactMan,
+      </if>
+      <if test="contactphone != null" >
+        ContactPhone,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="workorderstate != null" >
+        WorkOrderState,
+      </if>
+      <if test="isautosendorder != null" >
+        IsAutoSendOrder,
+      </if>
+      <if test="ishangup != null" >
+        IsHangUp,
+      </if>
+      <if test="statetime != null" >
+        StateTime,
+      </if>
+      <if test="stateremark != null" >
+        StateRemark,
+      </if>
+      <if test="customerfeedbackstar != null" >
+        CustomerFeedbackStar,
+      </if>
+      <if test="customerappraisal != null" >
+        CustomerAppraisal,
+      </if>
+      <if test="customersignature != null" >
+        CustomerSignature,
+      </if>
+      <if test="laborcosts != null" >
+        LaborCosts,
+      </if>
+      <if test="materialfee != null" >
+        MaterialFee,
+      </if>
+      <if test="dealresult != null" >
+        DealResult,
+      </if>
+      <if test="allcost != null" >
+        AllCost,
+      </if>
+      <if test="totaltimeconsuming != null" >
+        TotalTimeConsuming,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="addclientuserid != null" >
+        #{addclientuserid,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchuserid != null" >
+        #{dispatchuserid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="recipientuserid != null" >
+        #{recipientuserid,jdbcType=INTEGER},
+      </if>
+      <if test="workordertypeencoding != null" >
+        #{workordertypeencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null" >
+        #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="servecompany != null" >
+        #{servecompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contactman != null" >
+        #{contactman,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="workorderstate != null" >
+        #{workorderstate,jdbcType=INTEGER},
+      </if>
+      <if test="isautosendorder != null" >
+        #{isautosendorder,jdbcType=INTEGER},
+      </if>
+      <if test="ishangup != null" >
+        #{ishangup,jdbcType=INTEGER},
+      </if>
+      <if test="statetime != null" >
+        #{statetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateremark != null" >
+        #{stateremark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerfeedbackstar != null" >
+        #{customerfeedbackstar,jdbcType=INTEGER},
+      </if>
+      <if test="customerappraisal != null" >
+        #{customerappraisal,jdbcType=VARCHAR},
+      </if>
+      <if test="customersignature != null" >
+        #{customersignature,jdbcType=VARCHAR},
+      </if>
+      <if test="laborcosts != null" >
+        #{laborcosts,jdbcType=DECIMAL},
+      </if>
+      <if test="materialfee != null" >
+        #{materialfee,jdbcType=DECIMAL},
+      </if>
+      <if test="dealresult != null" >
+        #{dealresult,jdbcType=VARCHAR},
+      </if>
+      <if test="allcost != null" >
+        #{allcost,jdbcType=DECIMAL},
+      </if>
+      <if test="totaltimeconsuming != null" >
+        #{totaltimeconsuming,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.workorder" >
+    update workorder
+    <set >
+      <if test="addclientuserid != null" >
+        AddClientUserId = #{addclientuserid,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchuserid != null" >
+        DispatchUserId = #{dispatchuserid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="recipientuserid != null" >
+        RecipientUserId = #{recipientuserid,jdbcType=INTEGER},
+      </if>
+      <if test="workordertypeencoding != null" >
+        WorkOrderTypeEncoding = #{workordertypeencoding,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        Details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null" >
+        ApplyTime = #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="servecompany != null" >
+        ServeCompany = #{servecompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contactman != null" >
+        ContactMan = #{contactman,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        ContactPhone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="workorderstate != null" >
+        WorkOrderState = #{workorderstate,jdbcType=INTEGER},
+      </if>
+      <if test="isautosendorder != null" >
+        IsAutoSendOrder = #{isautosendorder,jdbcType=INTEGER},
+      </if>
+      <if test="ishangup != null" >
+        IsHangUp = #{ishangup,jdbcType=INTEGER},
+      </if>
+      <if test="statetime != null" >
+        StateTime = #{statetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stateremark != null" >
+        StateRemark = #{stateremark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerfeedbackstar != null" >
+        CustomerFeedbackStar = #{customerfeedbackstar,jdbcType=INTEGER},
+      </if>
+      <if test="customerappraisal != null" >
+        CustomerAppraisal = #{customerappraisal,jdbcType=VARCHAR},
+      </if>
+      <if test="customersignature != null" >
+        CustomerSignature = #{customersignature,jdbcType=VARCHAR},
+      </if>
+      <if test="laborcosts != null" >
+        LaborCosts = #{laborcosts,jdbcType=DECIMAL},
+      </if>
+      <if test="materialfee != null" >
+        MaterialFee = #{materialfee,jdbcType=DECIMAL},
+      </if>
+      <if test="dealresult != null" >
+        DealResult = #{dealresult,jdbcType=VARCHAR},
+      </if>
+      <if test="allcost != null" >
+        AllCost = #{allcost,jdbcType=DECIMAL},
+      </if>
+      <if test="totaltimeconsuming != null" >
+        TotalTimeConsuming = #{totaltimeconsuming,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <update id="updateOrderState">
+    update workorder
+    <set >
+      <if test="workorderstate != null" >
+        WorkOrderState = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.workorder" >
+    update workorder
+    set AddClientUserId = #{addclientuserid,jdbcType=INTEGER},
+      DispatchUserId = #{dispatchuserid,jdbcType=INTEGER},
+      DepartmentId = #{departmentid,jdbcType=INTEGER},
+      RecipientUserId = #{recipientuserid,jdbcType=INTEGER},
+      WorkOrderTypeEncoding = #{workordertypeencoding,jdbcType=VARCHAR},
+      Code = #{code,jdbcType=VARCHAR},
+      Details = #{details,jdbcType=VARCHAR},
+      ApplyTime = #{applytime,jdbcType=TIMESTAMP},
+      ServeCompany = #{servecompany,jdbcType=VARCHAR},
+      ContactMan = #{contactman,jdbcType=VARCHAR},
+      ContactPhone = #{contactphone,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      WorkOrderState = #{workorderstate,jdbcType=INTEGER},
+      IsAutoSendOrder = #{isautosendorder,jdbcType=INTEGER},
+      IsHangUp = #{ishangup,jdbcType=INTEGER},
+      StateTime = #{statetime,jdbcType=TIMESTAMP},
+      StateRemark = #{stateremark,jdbcType=VARCHAR},
+      CustomerFeedbackStar = #{customerfeedbackstar,jdbcType=INTEGER},
+      CustomerAppraisal = #{customerappraisal,jdbcType=VARCHAR},
+      CustomerSignature = #{customersignature,jdbcType=VARCHAR},
+      LaborCosts = #{laborcosts,jdbcType=DECIMAL},
+      MaterialFee = #{materialfee,jdbcType=DECIMAL},
+      DealResult = #{dealresult,jdbcType=VARCHAR},
+      AllCost = #{allcost,jdbcType=DECIMAL},
+      TotalTimeConsuming = #{totaltimeconsuming,jdbcType=REAL},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.provider.mapper.workordertimeMapper" >
+  <resultMap id="BaseResultMap" type="cn.provider.entity.workordertime" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="WorkOrderId" property="workorderid" jdbcType="INTEGER" />
+    <result column="AddTime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="CustomerServiceReviewTime" property="customerservicereviewtime" jdbcType="TIMESTAMP" />
+    <result column="CustomerServiceDispatchTime" property="customerservicedispatchtime" jdbcType="TIMESTAMP" />
+    <result column="DutyDepartAuditTime" property="dutydepartaudittime" jdbcType="TIMESTAMP" />
+    <result column="DutyDepartOrdersTime" property="dutydepartorderstime" jdbcType="TIMESTAMP" />
+    <result column="ArriveSpotTime" property="arrivespottime" jdbcType="TIMESTAMP" />
+    <result column="FinishTime" property="finishtime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, WorkOrderId, AddTime, CustomerServiceReviewTime, CustomerServiceDispatchTime, 
+    DutyDepartAuditTime, DutyDepartOrdersTime, ArriveSpotTime, FinishTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from workordertime
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workordertime
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.provider.entity.workordertime" >
+    insert into workordertime (Id, WorkOrderId, AddTime, 
+      CustomerServiceReviewTime, CustomerServiceDispatchTime, 
+      DutyDepartAuditTime, DutyDepartOrdersTime, 
+      ArriveSpotTime, FinishTime, Remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{workorderid,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{customerservicereviewtime,jdbcType=TIMESTAMP}, #{customerservicedispatchtime,jdbcType=TIMESTAMP}, 
+      #{dutydepartaudittime,jdbcType=TIMESTAMP}, #{dutydepartorderstime,jdbcType=TIMESTAMP}, 
+      #{arrivespottime,jdbcType=TIMESTAMP}, #{finishtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.provider.entity.workordertime" >
+    insert into workordertime
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="workorderid != null" >
+        WorkOrderId,
+      </if>
+      <if test="addtime != null" >
+        AddTime,
+      </if>
+      <if test="customerservicereviewtime != null" >
+        CustomerServiceReviewTime,
+      </if>
+      <if test="customerservicedispatchtime != null" >
+        CustomerServiceDispatchTime,
+      </if>
+      <if test="dutydepartaudittime != null" >
+        DutyDepartAuditTime,
+      </if>
+      <if test="dutydepartorderstime != null" >
+        DutyDepartOrdersTime,
+      </if>
+      <if test="arrivespottime != null" >
+        ArriveSpotTime,
+      </if>
+      <if test="finishtime != null" >
+        FinishTime,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="workorderid != null" >
+        #{workorderid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerservicereviewtime != null" >
+        #{customerservicereviewtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerservicedispatchtime != null" >
+        #{customerservicedispatchtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydepartaudittime != null" >
+        #{dutydepartaudittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydepartorderstime != null" >
+        #{dutydepartorderstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivespottime != null" >
+        #{arrivespottime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.provider.entity.workordertime" >
+    update workordertime
+    <set >
+      <if test="workorderid != null" >
+        WorkOrderId = #{workorderid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        AddTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerservicereviewtime != null" >
+        CustomerServiceReviewTime = #{customerservicereviewtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerservicedispatchtime != null" >
+        CustomerServiceDispatchTime = #{customerservicedispatchtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydepartaudittime != null" >
+        DutyDepartAuditTime = #{dutydepartaudittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dutydepartorderstime != null" >
+        DutyDepartOrdersTime = #{dutydepartorderstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivespottime != null" >
+        ArriveSpotTime = #{arrivespottime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null" >
+        FinishTime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.provider.entity.workordertime" >
+    update workordertime
+    set WorkOrderId = #{workorderid,jdbcType=INTEGER},
+      AddTime = #{addtime,jdbcType=TIMESTAMP},
+      CustomerServiceReviewTime = #{customerservicereviewtime,jdbcType=TIMESTAMP},
+      CustomerServiceDispatchTime = #{customerservicedispatchtime,jdbcType=TIMESTAMP},
+      DutyDepartAuditTime = #{dutydepartaudittime,jdbcType=TIMESTAMP},
+      DutyDepartOrdersTime = #{dutydepartorderstime,jdbcType=TIMESTAMP},
+      ArriveSpotTime = #{arrivespottime,jdbcType=TIMESTAMP},
+      FinishTime = #{finishtime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

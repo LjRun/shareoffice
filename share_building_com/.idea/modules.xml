@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/eureka_server/eureka_server.iml" filepath="$PROJECT_DIR$/eureka_server/eureka_server.iml" />
       <module fileurl="file://$PROJECT_DIR$/provide_message/provide_message.iml" filepath="$PROJECT_DIR$/provide_message/provide_message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provider_order/provider_order.iml" filepath="$PROJECT_DIR$/provider_order/provider_order.iml" />
       <module fileurl="file://$PROJECT_DIR$/provider_user/provider_user.iml" filepath="$PROJECT_DIR$/provider_user/provider_user.iml" />
       <module fileurl="file://$PROJECT_DIR$/share_building_com.iml" filepath="$PROJECT_DIR$/share_building_com.iml" />
       <module fileurl="file://$PROJECT_DIR$/zuul_server/zuul_server.iml" filepath="$PROJECT_DIR$/zuul_server/zuul_server.iml" />

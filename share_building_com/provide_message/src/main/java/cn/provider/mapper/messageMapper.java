@@ -3,6 +3,7 @@ package cn.provider.mapper;
 import cn.provider.entity.message;
 import cn.provider.model.request.MessageRequest;
 import cn.provider.model.response.MessageModel;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface messageMapper {
 
     int updateByPrimaryKey(message record);
 
-    List<MessageModel> selectMessage(MessageRequest req);
+    List<MessageModel> selectMessage(@Param("snedUserId") Integer snedUserId, @Param("messageType") String messageType);
 }

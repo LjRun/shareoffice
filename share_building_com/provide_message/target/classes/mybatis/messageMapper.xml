@@ -25,7 +25,7 @@
     </select>
 
 
-    <select id="selectMessage" resultType="cn.provider.model.response.MessageModel" parameterType="cn.provider.model.request.MessageRequest">
+    <select id="selectMessage" resultType="cn.provider.model.response.MessageModel">
         SELECT
         message.*,user.username
         FROM shareoffice.message
@@ -37,7 +37,7 @@
         <if test="messageType!=null">
             and MsgType=#{messageType}
         </if>
-        limit ${(page-1)*size},${size}
+        order by id desc
     </select>
 
 

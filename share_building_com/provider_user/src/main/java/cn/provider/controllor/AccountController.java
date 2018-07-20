@@ -30,7 +30,9 @@ public class AccountController {
     //登入接口
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public CommonModel login(@RequestBody(required = false) LoginRequest req) {
-
+        if (req == null) {
+            return new CommonModel<String>("账号不能为空", 0, StateCode.KnownError, null);
+        }
         if (StringUtil.IsNullOrEmpty(req.getAccount())) {
             return new CommonModel<String>("账号不能为空", 0, StateCode.KnownError, null);
         }
@@ -49,10 +51,7 @@ public class AccountController {
         }
         //设置登入token
         String token = StringUtil.GenerateGUID();
-        user userModel = new user();
-        userModel.setId(us.getId());
-        userModel.setToken(token);
-        boolean result = iUserService.setUser(userModel);
+        boolean result = iUserService.setUser(us.getId(),token);
         if (result) {
             return new CommonModel<LoginResponse>("登入成功", 1, StateCode.Success, new LoginResponse(us.getId(), token));
         }
